@@ -1,5 +1,11 @@
 const webpack = require('webpack')
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
+
+const extractLess = new ExtractTextPlugin({
+  filename: "[name].[contenthash].css",
+  disable: process.env.NODE_ENV === "development"
+})
+
 const config = {
     entry: [
         'webpack-dev-server/client?http://127.0.0.1:8080',
@@ -14,17 +20,15 @@ const config = {
             },
             {
               test: /\.less$/,
-              use: [{
-                  loader: "style-loader"
-              }, {
-                  loader: "css-loader", options: {
-                      sourceMap: true
-                  }
-              }, {
-                  loader: "less-loader", options: {
-                      sourceMap: true
-                  }
-              }]
+              use: extractLess.extract({
+                use: [{
+                    loader: "css-loader"
+                }, {
+                    loader: "less-loader"
+                }],
+                // use style-loader in development
+                fallback: "style-loader"
+            })
             },
             {
                 test: /\.css$/,
@@ -53,7 +57,8 @@ const config = {
             'process.env': {
                 'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
             }
-        })
+        }),
+        extractLess
     ],
     devServer: {
         contentBase: './dist',
