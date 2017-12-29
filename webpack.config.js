@@ -13,11 +13,24 @@ const config = {
                 use: ['react-hot-loader', 'babel-loader']
             },
             {
+              test: /\.less$/,
+              use: [{
+                  loader: "style-loader"
+              }, {
+                  loader: "css-loader", options: {
+                      sourceMap: true
+                  }
+              }, {
+                  loader: "less-loader", options: {
+                      sourceMap: true
+                  }
+              }]
+            },
+            {
                 test: /\.css$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: 'css-loader'
-
                 })
             },
             {

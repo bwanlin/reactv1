@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { Routes } from './Routes/Routes'
 import configureStore from './redux/configStore'
-import './style/main.css'
+
+import './style/index.less'
 
 const store = configureStore()
 

@@ -4,10 +4,7 @@ import { withRouter } from 'react-router'
 const App = () => {
 	return (
 		<div className="container">
-				<div>
-					<h2>React - Redux - antd</h2>
-					<hr />
-				</div>
+		homepage
 		</div>
 	)
 }

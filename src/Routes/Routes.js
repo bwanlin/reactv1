@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+
 import Home from '../Pages/Home'
 
 export class Routes extends React.Component {
@@ -7,7 +8,7 @@ export class Routes extends React.Component {
 		return (
 			<Router>
 				<Switch>
-					<Route path="/" component={Home} />
+					<Route exact path="/" component={Home} />
 					<Route render ={ () => {
 						return <p>You're lost.</p>
 					}} />
